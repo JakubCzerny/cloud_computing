@@ -94,6 +94,7 @@ router.route('/exercise1_task1')
 router.route('/exercise1_task2')
     .get(function(req, res)
     {
+        // require('request')
         // ================================================================================================================
         /**
          * TO DO
@@ -106,6 +107,11 @@ router.route('/exercise1_task2')
         /**
          * check whether an autorization header was send
          */
+
+        // curl http://localhost:8080/exercises/exercise1_task2
+        // curl http://aaa:bbbb@localhost:8080/exercises/exercise1_task2
+        // curl http://CCS:CCS_exercise1_task2@localhost:8080/exercises/exercise1_task2
+
         if (req.headers.authorization)
         {
             /**
@@ -123,7 +129,8 @@ router.route('/exercise1_task2')
          * first value matches the expected username
          * second value the expected password
          */
-        if (auth && auth[0] == 'CCS' && auth[1] == 'CCS_exercise1_task2') {
+
+        if (auth && auth[0].toLowerCase() == 'ccs' && auth[1].toLowerCase() == 'ccs_exercise1_task2') {
             /**
              * Processing can be continued here, user was authenticated
              */
