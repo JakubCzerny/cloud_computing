@@ -46,7 +46,9 @@ router.route('/exercise1_task1')
         /**
          * Hint : http://nodejs.org/api.html#_child_processes
          */
-        const exec = require('child_process').exec;
+        const exec = require('child_process').execSync;
+
+
         // ================================================================================================================
         /**
          * TO DO
@@ -57,14 +59,35 @@ router.route('/exercise1_task1')
          * 5. save in exercise_1_Message
          */
         // =================================================================================================================
-        let exercise_1_Message = {
+
+
+
+
+        let cmd = "cat /etc/passwd | wc -l";
+        var num_users = exec(cmd).toString().trim()
+
+        cmd = "cat /etc/passwd | cut -d: -f1";
+        var userNames = exec(cmd).toString().split('\n')
+
+        cmd = "lsblk -l | wc -l";
+        var storages = parseInt(exec(cmd).toString()) - 1
+
+        cmd = "lsblk -o SIZE -l";
+        var sizes = exec(cmd).toString().split('\n').slice(1,-1)
+        for(let i=0; i<sizes.length; i++){
+          sizes[i] = sizes[i].trim()
+        }
+
+        var exercise_1_Message = {
                 message: 'exercise_1',
-                numberUsers: 'x',
-                userNames:['x','y'],
-                numStorageDisks:'xy',
-                storageDisksInfo:['size1', 'size2', 'size3']
+                numberUsers: num_users,
+                userNames: userNames,
+                numStorageDisks: storages,
+                storageDisksInfo: sizes
             };
-        res.json( exercise_1_Message);
+
+
+        res.json(exercise_1_Message);
 
     });
 /**
@@ -123,12 +146,3 @@ app.use('/exercises', router);
  */
 app.listen(port);
 console.log('Server started and listening on port ' + port);
-
-
-
-
-
-
-
-
-
