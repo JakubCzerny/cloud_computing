@@ -48,7 +48,6 @@ router.route('/exercise1_task1')
          */
         const exec = require('child_process').execSync;
 
-
         // ================================================================================================================
         /**
          * TO DO
@@ -60,19 +59,18 @@ router.route('/exercise1_task1')
          */
         // =================================================================================================================
 
-
-
-
         let cmd = "cat /etc/passwd | wc -l";
         var num_users = exec(cmd).toString().trim()
 
         cmd = "cat /etc/passwd | cut -d: -f1";
         var userNames = exec(cmd).toString().split('\n').slice(0,-1)
 
-        cmd = "lsblk -l | wc -l";
+        // cmd = "lsblk -l | wc -l";
+        cmd = "df -h | wc -l"
         var storages = parseInt(exec(cmd).toString()) - 1
 
-        cmd = "lsblk -o SIZE -l";
+        // cmd = "lsblk -o SIZE -l";
+        cmd = "df -h --output=size"
         var sizes = exec(cmd).toString().split('\n').slice(1,-1)
         for(let i=0; i<sizes.length; i++){
           sizes[i] = sizes[i].trim()
