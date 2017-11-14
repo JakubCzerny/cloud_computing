@@ -67,7 +67,7 @@ router.route('/exercise1_task1')
         var num_users = exec(cmd).toString().trim()
 
         cmd = "cat /etc/passwd | cut -d: -f1";
-        var userNames = exec(cmd).toString().split('\n')
+        var userNames = exec(cmd).toString().split('\n').slice(0,-1)
 
         cmd = "lsblk -l | wc -l";
         var storages = parseInt(exec(cmd).toString()) - 1
