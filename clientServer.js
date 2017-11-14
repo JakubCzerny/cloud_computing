@@ -94,7 +94,6 @@ router.route('/exercise1_task1')
 router.route('/exercise1_task2')
     .get(function(req, res)
     {
-        // require('request')
         // ================================================================================================================
         /**
          * TO DO
@@ -104,10 +103,15 @@ router.route('/exercise1_task2')
          */
         // =================================================================================================================
         let auth;
+        let username = undefined
+        let password = undefined
+
         /**
          * check whether an autorization header was send
          */
 
+
+        // Try from command line - the browsers don't allow for that
         // curl http://localhost:8080/exercises/exercise1_task2
         // curl http://aaa:bbbb@localhost:8080/exercises/exercise1_task2
         // curl http://CCS:CCS_exercise1_task2@localhost:8080/exercises/exercise1_task2
@@ -122,6 +126,9 @@ router.route('/exercise1_task2')
              * should result in an array
              */
             auth = new Buffer(req.headers.authorization.substring(6), 'base64').toString().split(':');
+
+            if(auth):
+              [username, password] = [auth[0].toLowerCase(), auth[1].toLowerCase]
         }
         /**
          *  checks if:
@@ -130,7 +137,7 @@ router.route('/exercise1_task2')
          * second value the expected password
          */
 
-        if (auth && auth[0].toLowerCase() == 'ccs' && auth[1].toLowerCase() == 'ccs_exercise1_task2') {
+        if (username == 'ccs' && password == 'ccs_exercise1_task2') {
             /**
              * Processing can be continued here, user was authenticated
              */
