@@ -148,6 +148,18 @@ router.route('/exercise1_task2')
             res.end('Unsuccessful Authentication');
         }
     });
+
+    /**
+     * Exercise 1: Task 2 Route (Service Level Authentication)
+     */
+    router.route('/exercise2')
+        .get(function(req, res)
+        {
+              res.send('group 49 application deployed using docker');
+        });
+
+// cloudcomputinggroup49
+
 /**
  * REGISTER OUR ROUTES
  * our router is now pointing to /exercises
