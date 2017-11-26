@@ -127,8 +127,9 @@ router.route('/exercise1_task2')
              */
             auth = new Buffer(req.headers.authorization.substring(6), 'base64').toString().split(':');
 
-            if(auth):
+            if(auth){
               [username, password] = [auth[0].toLowerCase(), auth[1].toLowerCase]
+            }
         }
         /**
          *  checks if:
